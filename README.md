@@ -1,164 +1,315 @@
-# 25CS2741 – Fundamentals of Internet of Things + Lab (FIOT_LAB)
+# FIoT_LAB_Sem3 — Fundamentals of Internet of Things + Lab
 
-**Institution:** Shiv Nadar University – Chennai  
-**Department:** Department of Computer Science & Engineering  
-**Degree Program:** B.Tech Computer Science & Engineering (Internet of Things)  
-**Course Code:** 25CS2741 – Fundamentals of Internet of Things + Lab  
-**Academic Year:** 2026–2027 (II Year / 3rd Semester)  
-**Repository Author:** Pranavakumar ([@Pranavakumar9](https://github.com/Pranavakumar9))  
-**Target Architectures:** Intel/Atmel 8051 (AT89S52), ARM Cortex-M3 (STM32F103C8T6), ARM Cortex-M4 (NUCLEO-F401RE), Espressif ESP8266  
-
----
-
-## Executive Summary
-
-This repository contains the complete, verified, and professionally documented laboratory codebase and technical reports for **25CS2741 Fundamentals of Internet of Things + Lab** at Shiv Nadar University – Chennai. 
-
-The curriculum provides an intensive, rigorous progression from 8-bit bare-metal register-level embedded systems (8051) through 32-bit ARM Cortex-M microcontrollers (STM32F103 and NUCLEO-F401RE) to connected IoT cloud architectures integrating multi-parameter environmental sensing (Bosch Sensortec BME280), embedded REST Web Servers, MQTT 3.1.1 telemetry streaming, and visual cloud analytics dashboards in Node-RED.
-
-Every Continuous Assessment Test (CAT 2 through CAT 13) and every individual sub-task features:
-- **Clean, compilable C code** written from first principles with zero compiler errors and zero warnings.
-- **Dedicated circuit schematics** in both scalable vector format (`.svg`) and high-resolution 300-DPI raster format (`.png`).
-- **Standardized 13-section technical documentation** (`README.md`) covering objective, problem statement, pinouts, wiring analysis, theory, mathematical calculations, code walkthrough, build/flash instructions, expected outputs, viva voce Q&A with in-depth answers, and troubleshooting guides.
+**Course Code:** 25CS2741  
+**Course Title:** Fundamentals of Internet of Things + Lab  
+**Institution:** Shiv Nadar University, Chennai — Department of Computer Science & Engineering  
+**Academic Level:** B.Tech CSE (IoT) — II Year / 3rd Semester  
+**Student Name:** Akshay  
+**Student Register Number:** 25011102012  
+**Default Branch:** `main`
 
 ---
 
-## Master Laboratory Curriculum Index
+## 1. About the Repository
 
-| Evaluation Category | Topic / Domain | Target Microcontroller | Sub-Task Folders & Focus | Status |
-|:---:|:---:|:---:|---|:---:|
-| **[CAT 2](./8051/CAT2/)** | 8051 GPIO Bring-Up & Delay Loops | Microchip AT89S52 (11.0592 MHz) | • [`task2_1`](./8051/CAT2/task2_1/): Active-LOW Port 1 LED Blink<br>• [`task2_2`](./8051/CAT2/task2_2/): Cycle-Exact Delay Library<br>• [`task2_3`](./8051/CAT2/task2_3/): Frequency-Swept Multi-LED Pattern | Verified |
-| **[CAT 3](./8051/CAT3/)** | Timers & External Interrupts | Microchip AT89S52 (11.0592 MHz) | • [`task3_1`](./8051/CAT3/task3_1/): 4-Mode Timer Generator & Debounced INT0 Pushbutton | Verified |
-| **[CAT 4](./8051/CAT4/)** | Matrix Keypad & 7-Segment Display | Microchip AT89S52 (11.0592 MHz) | • [`task4_1`](./8051/CAT4/task4_1/): 4x4 Keypad Scanner, 7-Segment Decoder & Dynamic Patterns | Verified |
-| **[CAT 5](./8051/CAT5/)** | Timer Timebase, PWM & Actuators | Microchip AT89S52 (11.0592 MHz) | • [`task5_1`](./8051/CAT5/task5_1/): 1ms Timebase & 500 Hz PWM LED Fading<br>• [`task5_2`](./8051/CAT5/task5_2/): Square & Triangular Wave Generator<br>• [`task5_3`](./8051/CAT5/task5_3/): ULN2003 Stepper Motor Half-Stepping | Verified |
-| **[CAT 6](./8051/CAT6/)** | UART Serial Communications | Microchip AT89S52 (11.0592 MHz) | • [`task6_a`](./8051/CAT6/task6_a/): 9600-8-N-1 Polled UART Transmitter<br>• [`task6_b`](./8051/CAT6/task6_b/): Interrupt Ring Buffer Receiver & Echo | Verified |
-| **[CAT 7](./8051/CAT7/)** | HD44780 LCD & System Menus | Microchip AT89S52 (11.0592 MHz) | • [`task7_a`](./8051/CAT7/task7_a/): 4-bit Nibble HD44780 Driver & Custom CGRAM Glyphs<br>• [`task7_b`](./8051/CAT7/task7_b/): Dynamic Telemetry Display & Live Uptime<br>• [`task7_c`](./8051/CAT7/task7_c/): Interactive Keypad Navigation Menu Tree | Verified |
-| **[CAT 8](./STM32/CAT8/)** | STM32 GPIO & Software Debouncing | STM32F103 Blue Pill (Cortex-M3 @ 72 MHz) | • [`task8_a`](./STM32/CAT8/task8_a/): Active-LOW PC13 LED & SysTick Delays<br>• [`task8_b`](./STM32/CAT8/task8_b/): Software Debouncing Finite State Machine<br>• [`task8_c`](./STM32/CAT8/task8_c/): Short vs Long Press Duration Classifier | Verified |
-| **[CAT 9](./STM32/CAT9/)** | STM32 USART1 & Command Parsers | STM32F103 Blue Pill (Cortex-M3 @ 72 MHz) | • [`task9_a`](./STM32/CAT9/task9_a/): Polled vs Interrupt UART Echo Server<br>• [`task9_b`](./STM32/CAT9/task9_b/): Line-Buffered Command Parser (LED_ON, LED_OFF) | Verified |
-| **[CAT 10](./STM32/CAT10/)** | STM32 + ESP8266 HTTP Web Server | STM32F103 Blue Pill (Cortex-M3 @ 72 MHz) | • [`task10_a`](./STM32/CAT10/task10_a/): Dual-UART ST-LINK <-> ESP8266 Modem Bridge<br>• [`task10_b`](./STM32/CAT10/task10_b/): Wi-Fi Station Provisioning & DHCP Query<br>• [`task10_c`](./STM32/CAT10/task10_c/): Multi-Client Port 80 Web Server<br>• [`task10_d`](./STM32/CAT10/task10_d/): Two-Step AT+CIPSEND HTTP Dispatcher<br>• [`task10_e`](./STM32/CAT10/task10_e/): Node-RED HTTP Client Automation Flow | Verified |
-| **[CAT 11](./STM32/CAT11/)** | NUCLEO-F401RE GPIO Bring-Up | NUCLEO-F401RE (Cortex-M4 @ 84 MHz) | • [`task11_1`](./STM32/CAT11/task11_1/): Active-HIGH PA5 LD2 Bring-Up & SysTick<br>• [`task11_2`](./STM32/CAT11/task11_2/): Switch State Remembrance with Debouncing<br>• [`task11_3`](./STM32/CAT11/task11_3/): Short (< 1s) vs Long (>= 1s) Lighting Controller | Verified |
-| **[CAT 12](./STM32/CAT12/)** | BME280 I2C Bosch API & REST Server | NUCLEO-F401RE (Cortex-M4 @ 84 MHz) | • [`task12_a`](./STM32/CAT12/task12_a_bme280_i2c/): Official Bosch Sensor API over I2C1 (PB6/PB7)<br>• [`task12_b`](./STM32/CAT12/task12_b_http_json/): HTTP REST Server with Dynamic Content-Length<br>• [`task12_c`](./STM32/CAT12/task12_c_nodered_analytics/): Node-RED Poller Computing Running Min/Max/Avg | Verified |
-| **[CAT 13](./STM32/CAT13/)** | BME280 MQTT Client & Node-RED | NUCLEO-F401RE (Cortex-M4 @ 84 MHz) | • [`task13_a`](./STM32/CAT13/task13_a_mqtt_client/): Custom ESPLib MQTT 3.1.1 Driver Bring-Up<br>• [`task13_b`](./STM32/CAT13/task13_b_telemetry_pub/): BME280 Sensor to MQTT Publisher (1 Hz)<br>• [`task13_c`](./STM32/CAT13/task13_c_nodered_dash/): Cloud MQTT Dashboard & Telemetry Visualizer | Verified |
+This repository contains the laboratory work for the **Fundamentals of Internet of Things (FIoT) Lab**. It is organized by microcontroller platform and Continuous Assessment (CAT), with experiment source code, hardware circuit diagrams, project configuration files, supporting libraries, and experiment-level documentation.
+
+The repository currently has two main platform directories:
+
+1. **8051 (`8051/`)** — Bare-metal Embedded C experiments for the **AT89S52** microcontroller using the Keil C51 toolchain. The work covers GPIO, LED control, keypad and display interfacing, timers, software PWM, stepper-motor control, UART, and LCD interfacing.
+2. **STM32 (`STM32/`)** — ARM Cortex-M firmware projects using **STM32CubeMX**, the **STM32 HAL**, and **Keil MDK-ARM**. The projects use the STM32 Blue Pill (STM32F103C8T6) and NUCLEO-F401RE (STM32F401RET6) boards, progressing from GPIO and USART exercises to Wi-Fi, BME280 sensing, HTTP, MQTT, and Node-RED integration.
+
+The repository is organized around the contents currently present in the `main` branch. Task names and folder references below follow the repository layout rather than an assumed syllabus template.
 
 ---
 
-## Hardware Platforms & Toolchains
+## 2. Repository Structure
 
-### 1. 8051 Microcontroller Platform
-- **Target MCU:** Microchip / Atmel AT89S52 (40-Pin DIP, 8 KB ISP Flash, 256 Bytes on-chip RAM, 32 I/O lines, three 16-bit timers).
-- **Oscillator Frequency:** 11.0592 MHz crystal (for exact UART baud generation without error) and 12.0000 MHz.
-- **Compilers:** Keil C51 Compiler v9.60a / SDCC (Small Device C Compiler) v4.2+.
-- **Programmer:** USBASP ISP Programmer via AVRDUDE or ProgISP.
-
-### 2. STM32 ARM Cortex-M Platforms
-- **STM32F103C8T6 "Blue Pill":** 32-bit ARM Cortex-M3 core running at 72 MHz, 64 KB Flash, 20 KB SRAM. On-board user LED on **PC13** is **Active-LOW**.
-- **STMicroelectronics NUCLEO-F401RE:** 32-bit ARM Cortex-M4 core with hardware Floating-Point Unit (FPU) running at 84 MHz, 512 KB Flash, 96 KB SRAM. On-board user LED on **PA5** (LD2) is **Active-HIGH**; user button **B1** on **PC13** is **Active-LOW**.
-- **Debugging & VCP:** On-board ST-LINK/V2-1 debugger providing SWD debugging and USB Virtual COM Port (VCP).
-- **Compilers:** Keil MDK-ARM v5.38 / STM32CubeIDE v1.13 / GNU Arm Embedded Toolchain (`arm-none-eabi-gcc` 13.2+).
-
-### 3. Peripheral Sensors & Wireless Modules
-- **Bosch Sensortec BME280:** Combined digital humidity, barometric pressure, and temperature sensor. Interfaced via **I2C1** (PB6 SCL, PB7 SDA) in Standard Mode (100 kHz) at 7-bit primary address `0x76`. Uses official vendor-supplied Bosch Sensortec Sensor API driver (`bme280.c`, `bme280.h`).
-- **Espressif ESP8266 (Wemos D1 Mini / ESP-01):** Wi-Fi coprocessor loaded with standard Hayes AT firmware v1.7+, driven via UART at 115200 baud.
-- **Node-RED Runtime:** Node-RED v3.1+ running on host edge gateway, integrating `node-red-dashboard` for real-time visualization.
-- **Public MQTT Broker:** EMQX Cloud Sandbox (`broker.emqx.io:1883`, unencrypted TCP).
-
----
-
-## Technical Standards & Quality Gate Verification
-
-All implementations adhere strictly to rigorous academic and industrial embedded standards:
-1. **Zero Plagiarism & Independent Implementation:** Every single C source file, header, Node-RED flow, and documentation report was authored independently from first principles.
-2. **Compiler Verification:** All 8051 code compiles cleanly with Keil C51 and SDCC; all STM32 C files have been verified against GCC 13.2.0 (`-fsyntax-only -Wall -Wextra`) with **0 errors and 0 warnings**.
-3. **Hardware-Accurate Calculations:**
-   - 8051 Mode 1 16-bit timer reload values derived from crystal oscillation period ($T_{cycle} = \frac{12}{F_{osc}}$).
-   - 8051 Mode 2 8-bit auto-reload baud rates calculated with 0.00% clock error for 9600 baud (`TH1 = 0xFD`).
-   - Dynamic HTTP `Content-Length` headers calculated automatically from exact JSON string character counts.
-4. **Mandatory 13-Section README Template:** Every CAT folder and sub-task folder features:
-   1. Title, CAT, Week, Date
-   2. Objective
-   3. Problem Statement (paraphrased)
-   4. Hardware and Software Environment
-   5. Pin Connection Table
-   6. Circuit Diagram & Explanation (embedded SVG and 300-DPI PNG)
-   7. Theory and Approach
-   8. Code Walkthrough
-   9. Build, Flash, and Run Steps
-   10. Expected Output (serial consoles, HTTP headers, MQTT messages, and Node-RED tables)
-   11. Viva Q&A (4–6 in-depth questions with technical answers)
-   12. Troubleshooting Guide
-   13. Result and Learning Outcomes
-
----
-
-## Complete Repository Directory Tree
-
-```
-FIOT_LAB/
-├── README.md                                 # Master Repository Documentation & Index Table
-├── 8051/                                     # 8051 MCS-51 Laboratory Sequence (CAT 2 to CAT 7)
-│   ├── README.md                             # 8051 Architectural Overview & Formula Guide
-│   ├── CAT2/                                 # LED Bring-Up, Delay Routines & Frequency Sweep
-│   ├── CAT3/                                 # Hardware Timers (Mode 0-3) & Debounced INT0
-│   ├── CAT4/                                 # 4x4 Matrix Keypad & 7-Segment Multiplexing
-│   ├── CAT5/                                 # 1ms Timebase, 500 Hz PWM Fading & Stepper Motor
-│   ├── CAT6/                                 # Full-Duplex UART TX & Circular Ring Buffer Echo
-│   └── CAT7/                                 # 16x2 HD44780 LCD, Telemetry & Interactive Menu Tree
-└── STM32/                                    # STM32 32-bit ARM Laboratory Sequence (CAT 8 to CAT 13)
-    ├── README.md                             # STM32 Architecture, F1 vs F4, & IoT Gateway Overview
-    ├── CAT8/                                 # STM32F103 GPIO Bring-Up, Debouncing FSM & Duration
-    ├── CAT9/                                 # STM32F103 USART1 Echo & Line-Buffered Command Parser
-    ├── CAT10/                                # STM32F103 + ESP8266 AT Bridge & Port 80 Web Server
-    ├── CAT11/                                # NUCLEO-F401RE Cortex-M4 GPIO Bring-Up & State Logic
-    ├── CAT12/                                # NUCLEO-F401RE + BME280 I2C Bosch API & HTTP JSON Server
-    └── CAT13/                                # NUCLEO-F401RE + BME280 I2C + ESPLib MQTT & Node-RED
-```
-
----
-
-## Building and Flashing Guide
-
-### 8051 AT89S52 Build (SDCC / Keil C51)
-```bash
-# Compile using SDCC
-sdcc -mmcs51 --model-small src/main.c
-packihx main.ihx > main.hex
-
-# Flash via USBASP ISP programmer
-avrdude -c usbasp -p at89s52 -U flash:w:main.hex:i
+```text
+FIoT_LAB_Sem3/
+│
+├── README.md
+│
+├── 8051/
+│   ├── CAT2/
+│   │   ├── README.md
+│   │   ├── main.c
+│   │   ├── STARTUP.A51
+│   │   ├── TASK2B.uvproj
+│   │   ├── circuit.png
+│   │   └── objects/
+│   │       └── TASK2B.hex
+│   │
+│   ├── CAT3/
+│   │   ├── README.md
+│   │   ├── main.c
+│   │   ├── STARTUP.A51
+│   │   ├── TASK3A.uvproj
+│   │   ├── circuit.png
+│   │   └── objects/
+│   │
+│   ├── CAT4/
+│   │   ├── README.md
+│   │   ├── main.c
+│   │   ├── STARTUP.A51
+│   │   ├── TASK4A.uvproj
+│   │   ├── circuit.png
+│   │   └── objects/
+│   │
+│   ├── CAT5/
+│   │   ├── README.md
+│   │   ├── TASK5A/
+│   │   ├── TASK5B/
+│   │   │   ├── TASK5B.1/
+│   │   │   ├── TASK5B.2/
+│   │   │   └── TASK5B.3/
+│   │   └── TASK5C/
+│   │
+│   ├── CAT6/
+│   │   ├── TASK6A/
+│   │   └── TASK6B/
+│   │
+│   └── CAT7/
+│       ├── TASK7A/
+│       ├── TASK7B/
+│       └── TASK7C/
+│
+└── STM32/
+    ├── CAT8/
+    │   ├── README.md
+    │   ├── TASK8A/
+    │   ├── TASK8B/
+    │   └── TASK8C/
+    │
+    ├── CAT9/
+    │   ├── README.md
+    │   ├── TASK9A/
+    │   └── TASK9B/
+    │
+    ├── CAT10/
+    │   ├── README.md
+    │   ├── TASK10A/
+    │   ├── TASK10B/
+    │   └── TASK10C/
+    │
+    ├── CAT11/
+    │   ├── README.md
+    │   ├── TASK11A/
+    │   ├── TASK11B/
+    │   └── TASK11C/
+    │
+    ├── CAT12/
+    │   ├── README.md
+    │   ├── TASK12A/
+    │   ├── TASK12B/
+    │   └── TASK12C/
+    │
+    ├── CAT13/
+    │   ├── README.md
+    │   ├── TASK13/
+    │   ├── TASK13A/
+    │   └── TASK13B/
+    │
+    ├── CAT14/
+    │   ├── README.md
+    │   ├── TASK14/
+    │   ├── TASK14A/
+    │   └── TASK14B/
+    │
+    └── CAT15/
+        ├── README.md
+        ├── TASK15/
+        └── NodeRED/
+            ├── README.md
+            └── flows.json
 ```
 
-### STM32F103 / NUCLEO-F401RE Build (ARM GCC)
-```bash
-# Example compilation for NUCLEO-F401RE Cortex-M4 with Hardware FPU
-arm-none-eabi-gcc -Wall -O2 -mcpu=cortex-m4 -mthumb -mfloat-abi=hard -mfpu=fpv4-sp-d16 \
-  -I./src -I/path/to/Drivers/STM32F4xx_HAL_Driver/Inc \
-  src/*.c -o build/firmware.elf
+### 2.1 Common STM32 Task Project Contents
 
-# Convert to binary for ST-LINK flashing
-arm-none-eabi-objcopy -O binary build/firmware.elf build/firmware.bin
+The STM32 task projects generally use the STM32CubeMX / HAL project layout. Depending on the task, a project directory may contain:
 
-# Flash via ST-LINK CLI or drag-and-drop to NODE_F401RE drive
-st-flash write build/firmware.bin 0x08000000
-```
+| File / Folder | Purpose |
+|---|---|
+| `*.ioc` | STM32CubeMX peripheral and pin configuration |
+| `.mxproject` | STM32CubeMX project metadata |
+| `Core/Inc/` | Application header files |
+| `Core/Src/` | Application source and interrupt files |
+| `Drivers/` | CMSIS and STM32 HAL driver files |
+| `MDK-ARM/` | Keil µVision project and startup files |
+| `circuit.png` | Hardware wiring diagram |
+| `README.md` | Experiment objective, implementation notes, and observations |
 
-### Node-RED Analytics Flow Deployment
-```bash
-# Start Node-RED server
-node-red
+The exact files vary between tasks. Refer to the individual task directory before assuming that every item in this table is present.
 
-# Access web editor at http://localhost:1880/
-# Menu -> Import -> Select flow.json (from CAT10, CAT12, or CAT13)
-# Click Deploy and navigate to http://localhost:1880/ui/ for live dashboard
-```
+### 2.2 8051 Project Contents
+
+The 8051 experiments use Keil C51 project files (`*.uvproj`), Embedded C source files, and the 8051 startup assembly file (`STARTUP.A51`). The repository also contains circuit diagrams and `objects/` build-output folders in applicable experiments.
 
 ---
 
-## Author & Academic Integrity
+## 3. Platform and CAT Overview
 
-- **Author:** Pranavakumar  
-- **GitHub:** [@Pranavakumar9](https://github.com/Pranavakumar9)  
-- **Course:** 25CS2741 Fundamentals of Internet of Things + Lab  
-- **Department:** Computer Science & Engineering, Shiv Nadar University – Chennai  
-- **Academic Year:** 2026–2027  
+### 3.1 8051 Experiments
 
-*This laboratory repository has been designed to meet and exceed industrial embedded software engineering standards, providing complete, verifiable, and reproducible technical assets for academic evaluation.*
+| CAT | Experiment / Focus | Tasks present in this repository |
+|---|---|---|
+| [CAT2](8051/CAT2/) | 8051 hardware bring-up, LED blink, and delay library | [TASK2B](8051/CAT2/) |
+| [CAT3](8051/CAT3/) | Debounced push-button control and four-mode LED pattern controller | [TASK3A](8051/CAT3/) |
+| [CAT4](8051/CAT4/) | Matrix keypad scanning, 7-segment display, and LED HMI | [TASK4A](8051/CAT4/) |
+| [CAT5](8051/CAT5/) | Hardware Timer 0, software PWM, LED fading, and stepper motor | [TASK5A](8051/CAT5/TASK5A/), [TASK5B.1](8051/CAT5/TASK5B/TASK5B.1/), [TASK5B.2](8051/CAT5/TASK5B/TASK5B.2/), [TASK5B.3](8051/CAT5/TASK5B/TASK5B.3/), [TASK5C](8051/CAT5/TASK5C/) |
+| [CAT6](8051/CAT6/) | UART driver development and serial communication | [TASK6A](8051/CAT6/TASK6A/), [TASK6B](8051/CAT6/TASK6B/) |
+| [CAT7](8051/CAT7/) | 16×2 LCD driver, display control, and keypad-based interaction | [TASK7A](8051/CAT7/TASK7A/), [TASK7B](8051/CAT7/TASK7B/), [TASK7C](8051/CAT7/TASK7C/) |
+
+**8051 target:** AT89S52, 8-bit MCS-51 architecture. The experiments use register-level Embedded C and the Keil µVision C51 environment. Hardware details such as the clock, supply voltage, pin assignments, and peripheral wiring are documented in the corresponding experiment README and circuit diagram.
+
+### 3.2 STM32 Experiments
+
+| CAT | Experiment / Focus | Tasks present in this repository |
+|---|---|---|
+| [CAT8](STM32/CAT8/) | STM32 GPIO bring-up and switch-controlled LED operation | [TASK8A](STM32/CAT8/TASK8A/), [TASK8B](STM32/CAT8/TASK8B/), [TASK8C](STM32/CAT8/TASK8C/) |
+| [CAT9](STM32/CAT9/) | USART serial communication and command-controlled LED | [TASK9A](STM32/CAT9/TASK9A/), [TASK9B](STM32/CAT9/TASK9B/) |
+| [CAT10](STM32/CAT10/) | STM32–Wemos Wi-Fi modem interface using ESP8266 AT commands | [TASK10A](STM32/CAT10/TASK10A/), [TASK10B](STM32/CAT10/TASK10B/), [TASK10C](STM32/CAT10/TASK10C/) |
+| [CAT11](STM32/CAT11/) | NUCLEO-F401RE GPIO, onboard LED, push-button state, and press-duration classification | [TASK11A](STM32/CAT11/TASK11A/), [TASK11B](STM32/CAT11/TASK11B/), [TASK11C](STM32/CAT11/TASK11C/) |
+| [CAT12](STM32/CAT12/) | BME280 environmental sensing and HTTP cloud ingestion | [TASK12A](STM32/CAT12/TASK12A/), [TASK12B](STM32/CAT12/TASK12B/), [TASK12C](STM32/CAT12/TASK12C/) |
+| [CAT13](STM32/CAT13/) | BME280 I2C sensing and MQTT cloud analytics using ESP8266 / ESPLib | [TASK13](STM32/CAT13/TASK13/), [TASK13A](STM32/CAT13/TASK13A/), [TASK13B](STM32/CAT13/TASK13B/) |
+| [CAT14](STM32/CAT14/) | Environmental sensing with BME280 and MQTT cloud analytics | [TASK14](STM32/CAT14/TASK14/), [TASK14A](STM32/CAT14/TASK14A/), [TASK14B](STM32/CAT14/TASK14B/) |
+| [CAT15](STM32/CAT15/) | BME280 MQTT telemetry with Node-RED dashboard and analytics | [TASK15](STM32/CAT15/TASK15/), [NodeRED](STM32/CAT15/NodeRED/) |
+
+**STM32 target boards used across the repository:**
+
+- **STM32 Blue Pill:** STM32F103C8T6, ARM Cortex-M3.
+- **NUCLEO-F401RE:** STM32F401RET6, ARM Cortex-M4.
+- **Wi-Fi interface:** Wemos D1 Mini / ESP8266 modem using AT-command communication in the relevant projects.
+- **Environmental sensor:** Bosch BME280, interfaced over I2C in the sensing experiments.
+
+The board and peripheral configuration for a particular task must be taken from that task's `.ioc` file, source code, and README. Not every STM32 task uses every board or peripheral listed above.
+
+---
+
+## 4. Tools and Technologies
+
+| Tool / Technology | Usage |
+|---|---|
+| Keil µVision C51 | 8051 Embedded C development |
+| Keil MDK-ARM | STM32 ARM firmware development |
+| STM32CubeMX | STM32 pin, clock, and peripheral configuration |
+| STM32 HAL | STM32 peripheral abstraction and driver APIs |
+| AT89S52 | 8051 microcontroller platform |
+| STM32F103C8T6 | Blue Pill development board |
+| STM32F401RET6 | NUCLEO-F401RE development board |
+| Wemos D1 Mini / ESP8266 | Wi-Fi modem and AT-command interface |
+| Bosch BME280 | Temperature, humidity, and pressure sensing |
+| MQTT | Lightweight publish/subscribe messaging in the MQTT experiments |
+| HTTP | Request-based telemetry transfer in the HTTP experiment |
+| Node-RED | MQTT ingestion, data processing, dashboard visualization, and analytics |
+| MQTTX / serial terminal tools | Testing and debugging communication where applicable |
+
+---
+
+## 5. Experiment Documentation
+
+Experiment documentation is maintained at the CAT level or task level depending on the directory structure. Open the relevant `README.md` for the detailed objective, hardware connections, implementation, and observations.
+
+A useful experiment report should include the following information:
+
+| Field | Description |
+|---|---|
+| **Experiment / CAT** | Continuous Assessment number |
+| **Date** | Date on which the experiment was performed |
+| **Experiment Name** | Experiment title |
+| **Hardware Setup / Platform** | Board, microcontroller, sensors, peripherals, and interface |
+| **Task Number** | Task identifier and title |
+| **Circuit Diagram** | Wiring diagram and pin connections |
+| **Core Logic** | Working principle, algorithm, or pseudocode |
+| **Code / Project Files** | Main source files, headers, libraries, and IDE project |
+| **Output / Verification** | Observed hardware or terminal output |
+| **Inference** | Result and technical conclusion |
+
+### 5.1 Circuit Diagram Convention
+
+Where a `circuit.png` file exists, it is stored with the relevant CAT or task and can be embedded in its README using a relative path:
+
+```markdown
+![Circuit Diagram](circuit.png)
+```
+
+For a diagram stored in a parent folder, adjust the relative path accordingly, for example:
+
+```markdown
+![Circuit Diagram](../circuit.png)
+```
+
+Circuit diagrams should identify the development board, connected components, GPIO or bus pins, power supply, and ground.
+
+### 5.2 Source Code and Project Files
+
+- **8051:** Embedded C source (`.c`), header files (`.h`) where used, startup assembly (`STARTUP.A51`), Keil C51 project (`.uvproj`), circuit diagrams, and available build output.
+- **STM32:** CubeMX configuration (`.ioc`), application source and header files under `Core/`, HAL and CMSIS dependencies under `Drivers/`, Keil project files under `MDK-ARM/`, startup assembly, and circuit diagrams.
+- **Node-RED:** The CAT15 Node-RED folder contains an importable `flows.json` file and a setup / usage README.
+
+---
+
+## 6. Network and IoT Configuration
+
+The IoT experiments use different communication paths depending on the CAT:
+
+| Experiment | Communication path | Purpose |
+|---|---|---|
+| CAT10 | STM32 USART ↔ ESP8266 AT interface | Wi-Fi modem setup and network connection |
+| CAT12 | BME280 I2C → STM32 → ESP8266 → HTTP → Node-RED | Environmental telemetry over HTTP |
+| CAT13 | BME280 I2C → STM32 / ESPLib → ESP8266 → MQTT broker | MQTT environmental telemetry |
+| CAT14 | BME280 I2C → STM32 / ESP8266 MQTT client → broker | MQTT sensor-data publishing |
+| CAT15 | BME280 → STM32 / ESP8266 → MQTT broker → Node-RED | Live dashboard and environmental analytics |
+
+### 6.1 Configuration and Credential Safety
+
+Network credentials, private tokens, and passwords should be supplied locally during setup and must not be committed to a public repository. Use placeholders in documentation and source examples, such as:
+
+- Wi-Fi SSID: `<YOUR_WIFI_SSID>`
+- Wi-Fi password: `<YOUR_WIFI_PASSWORD>`
+- MQTT broker: use the broker configured for the experiment
+- MQTT topic: use the topic configured in the corresponding firmware and Node-RED flow
+
+Do not assume that a network name, password, IP address, broker, or topic used in one experiment is valid for another experiment. Check the relevant task source, README, and Node-RED flow for the configuration actually used.
+
+---
+
+## 7. Node-RED Dashboard — CAT15
+
+The CAT15 Node-RED project is stored in [`STM32/CAT15/NodeRED/`](STM32/CAT15/NodeRED/).
+
+| File | Description |
+|---|---|
+| [`flows.json`](STM32/CAT15/NodeRED/flows.json) | Node-RED flow to import into the Node-RED editor |
+| [`README.md`](STM32/CAT15/NodeRED/README.md) | Dashboard setup, flow import, and testing instructions |
+| [`circuit.png`](STM32/CAT15/circuit.png) | CAT15 hardware / system diagram |
+
+The documented dashboard flow includes MQTT message ingestion, BME280 telemetry processing, environmental metrics, gauges, trend charts, and alert logic. Refer to the CAT15 Node-RED README and `flows.json` for the exact nodes, topic, payload format, and dashboard configuration.
+
+---
+
+## 8. General Repository Guidelines
+
+1. Keep experiments inside their existing `8051/` or `STM32/` platform directory.
+2. Preserve the CAT and task folder names already used in the repository.
+3. Keep source files, project configuration, and supporting headers together with their respective experiment.
+4. Include a circuit diagram when the experiment requires external hardware connections.
+5. Update the relevant README when pin mappings, hardware, code behavior, or experiment results change.
+6. Verify project paths and required libraries before building in Keil.
+7. Do not commit generated temporary files unless they are intentionally part of the submission.
+8. Never publish Wi-Fi passwords, API keys, private tokens, or other credentials in source files or documentation.
+9. Test Node-RED flows with the correct broker, topic, and payload format before relying on the dashboard.
+10. Keep links in this README relative so they continue to work when the repository is cloned.
+
+---
+
+## 9. Repository Links
+
+- **GitHub Repository:** [FIoT_LAB_Sem3](https://github.com/akshayservepalli161-hub/FIoT_LAB_Sem3)
+- **8051 Experiments:** [`8051/`](8051/)
+- **STM32 Experiments:** [`STM32/`](STM32/)
+- **CAT15 Node-RED Dashboard:** [`STM32/CAT15/NodeRED/`](STM32/CAT15/NodeRED/)
+
+---
+
+*This README describes the directory layout and experiment groups currently present in the repository's `main` branch. Update the structure and CAT index when new tasks or files are added.*
